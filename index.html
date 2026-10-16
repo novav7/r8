@@ -1,76 +1,112 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Vertical Sections Fixed</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f5f5f5;
-            margin: 40px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practicals</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 30px 40px;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 85vh;
+    }
+
+    .module {
+        padding: 20px;
+    }
+
+    .module:first-child {
+        border-right: 2px solid #333;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
+    .practicals {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .practicals a {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #387ef5;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .practicals a:hover {
+        background: #245dcc;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
         }
 
-        .button-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
+        .module:first-child {
+            border-right: none;
+            border-bottom: 2px solid #333;
         }
-
-        .btn {
-            padding: 10px 20px;
-            background: #3b82f6;
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-        }
-    </style>
+    }
+</style>
 </head>
+
 <body>
 
-<h1> module 1 </h1>
+<div class="container">
 
-<div class="button-container">
-    <a href="p5_q1.html" class="btn">practical 1</a> <br>
-    <a href="p5_q2.html" class="btn">practical 2</a>
+    <!-- LEFT SIDE -->
+    <section class="module">
+        <h1>Module 1</h1>
+
+        <div class="practicals">
+            <a href="practical1.html">Practical 1</a>
+            <a href="practical4.html">Practical 4</a>
+        </div>
+
+        <div class="practicals">
+            <a href="practical5.html">Practical 5</a>
+            <a href="practical8.html">Practical 8</a>
+        </div>
+
+        <div class="practicals">
+            <a href="practical9.html">Practical 9</a>
+        </div>
+    </section>
+
+    <!-- RIGHT SIDE -->
+    <section class="module">
+        <h1>Module 2</h1>
+
+        <div class="practicals">
+            <a href="practical2.html">Practical 2</a>
+            <a href="practical3.html">Practical 3</a>
+        </div>
+
+        <div class="practicals">
+            <a href="practical4.html">Practical 4</a>
+            <a href="practical6.html">Practical 6</a>
+            <a href="practical10.html">Practical 10</a>
+        </div>
+    </section>
+
 </div>
-
-<h1> </h1>
-
-<div class="button-container">
-    <a href="p6_q1.html" class="btn">practical 3</a>
-    <a href="p6_q2.html" class="btn">practical 4</a>
-</div>
-
-<h1> </h1> 
-
-<div class="button-container">
-    <a href="p7_q1.html" class="btn">practical 5</a>
-    
- <  <a href="p7_q2.html" class="btn">Q 6</a> >
-</div>
-
-<h1>module 2 </h1>
-
-<div class="button-container">
-    <a href="p10_q1.html" class="btn">practical 2</a>
-    <a href="p10_q2.html" class="btn">practical 3</a>
-</div>
-    <h1> </h1>
-
-<div class="button-container">
-    <a href="pra1.html" class="btn">practical 4 </a>
-    <a href="pra2.html" class="btn">practical 6</a>
-    <a href="pra3.html" class="btn">practical 10</a>
-    <<a href="par4.html" class="btn">Practical 6</a> >
-</div> 
 
 </body>
-
 </html>
-
-
 
