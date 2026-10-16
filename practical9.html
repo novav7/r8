@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDA Practical 9</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 40px;
+}
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    width: 700px;
+    max-width: calc(100% - 50px);
+    margin: auto;
+}
+h1 { color: #222; }
+textarea {
+    width: 100%;
+    min-height: 600px;
+    box-sizing: border-box;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    white-space: pre;
+}
+.copy-btn, .back-btn {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+    background: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.copy-btn:hover, .back-btn:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Practical No. 9</h1>
+    <h2>Data Cleaning and Transformation</h2>
+    <ul>
+        <li>Handle missing values in a dataset.</li>
+        <li>Replace missing values with column mean.</li>
+        <li>Implement one-hot encoding for a categorical column.</li>
+        <li>Filter rows based on a threshold condition.</li>
+    </ul>
+    <h3>Code:</h3>
+    <textarea id="code1" readonly>object Main extends App {
+  val data = List(
+    ("Amit", Some(99.0), "male"),
+    ("Priya", Some(50.0), "female"),
+    ("Rahul", None, "male"),
+    ("Sneha", Some(92.0), "female"),
+    ("Karan", None, "male"),
+    ("Riya", Some(80.0), "female"),
+    ("Sahil", Some(70.0), "male")
+  )
+
+  println("Original Dataset")
+  println("Name\\tMarks\\tGender")
+  data.foreach(println)
+
+  val validMarks = data.flatMap(_._2)
+  val mean = validMarks.sum / validMarks.length
+
+  val cleanData = data.map {
+    case (name, marks, gender) =>
+  }
+
+  println("Mean:" + mean)
+  println("Marks:" + validMarks)
+  println("Clean data:" + cleanData)
+}</textarea>
+    <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+    <p><a href="index.html" class="back-btn">⬅ Back to Home</a></p>
+</div>
+<script>
+function copyCode(id, button) {
+    const code = document.getElementById(id);
+    code.select();
+    code.setSelectionRange(0, 999999);
+    navigator.clipboard.writeText(code.value).then(() => {
+        button.innerText = "✅ Copied!";
+        setTimeout(() => button.innerText = "📋 Copy", 2000);
+    }).catch(() => {
+        document.execCommand("copy");
+        button.innerText = "✅ Copied!";
+        setTimeout(() => button.innerText = "📋 Copy", 2000);
+    });
+}
+</script>
+</body>
+</html>

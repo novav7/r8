@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDA Practical 6</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+        h2 { color: #222; }
+        textarea {
+            width: 100%;
+            height: 520px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 8px 0 18px;
+        }
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .back-btn:hover, button:hover { background: #0056b3; }
+        .description { line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Practical 6: Matrix Slicing and Aggregation</h2>
+        <div class="description">
+            <ul>
+                <li>Slice a Breeze matrix to extract a sub-matrix.</li>
+                <li>Compute row-wise and column-wise sums.</li>
+                <li>Display results.</li>
+            </ul>
+        </div>
+        <h3>Code:</h3>
+        <textarea id="code1" readonly>import breeze.linalg._
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val matrix = DenseMatrix(
+      (4, 7, 2, 9),
+      (6, 1, 8, 3),
+      (5, 9, 6, 7),
+      (2, 6, 3, 8)
+    )
+
+    val subMatrix = matrix(1 to 2, 1 to 2)
+    val rowSums = sum(matrix(*, ::))
+    val colSums = sums(matrix(::, *))
+
+    println("rowSums")
+    println(rowSums)
+    println("colSums")
+    println(colSums)
+    println("matrix")
+    println(matrix)
+    println("Sub matrix")
+    println(subMatrix)
+  }
+}</textarea>
+        <button onclick="copyCode('code1', this)">📋 Copy</button>
+        <br>
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+    <script>
+        function copyCode(id, button) {
+            const code = document.getElementById(id);
+            code.select();
+            code.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(code.value).then(() => {
+                button.innerText = "✅ Copied!";
+                setTimeout(() => button.innerText = "📋 Copy", 2000);
+            });
+        }
+    </script>
+</body>
+</html>

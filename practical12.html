@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 2.2 - Frequency Distribution and Data Sorting</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .code-area {
+            width: 100%;
+            min-height: 850px;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            white-space: pre;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <h1>Practical No. 2.2: Frequency Distribution and Data Sorting</h1>
+        <p><strong>Code:</strong></p>
+        <textarea id="code1" class="code-area" readonly>object Main extends App {
+  val student = List(
+    ("Anup", 60),
+    ("Rahul", 90),
+    ("Rohit", 50),
+    ("Mayur", 60),
+    ("Abinash", 80),
+    ("Aman", 40)
+  )
+
+  val frequency = student
+    .groupBy(_._2)
+    .map {
+      case (marks, list) => (marks, list.length)
+    }
+    .toSeq
+    .sortBy(_._1)
+
+  println("=== Frequency Distribution ===")
+  println("Marks\\tFrequency")
+
+  var cumulative = 0
+  frequency.foreach {
+    case (marks, freq) =>
+      cumulative += freq
+      println(s"$marks\\t$freq\\t$cumulative")
+  }
+
+  println("\\n=== Sorted Dataset ===")
+  val sortedStudent = student.sortBy(_._2)
+  println("Name\\tMarks")
+  sortedStudent.foreach {
+    case (name, marks) =>
+      println(s"$name\\t$marks")
+  }
+}</textarea>
+        <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+    </div>
+    <script>
+        function copyCode(id, button) {
+            const code = document.getElementById(id);
+            code.select();
+            code.setSelectionRange(0, 999999);
+            navigator.clipboard.writeText(code.value).then(() => {
+                button.textContent = "✅ Copied!";
+                setTimeout(() => button.textContent = "📋 Copy", 2000);
+            });
+        }
+    </script>
+</body>
+</html>

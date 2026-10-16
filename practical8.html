@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover { background: #0056b3; }
+        .code-area {
+            width: 100%;
+            min-height: 480px;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            white-space: pre;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <h2>Practical 8 - Spark Data Frame Creation</h2>
+        <ul>
+            <li>Load CSV file Spark Data Frame.</li>
+            <li>Filter rows where numeric column threshold.</li>
+            <li>Perform group operation compute average each group.</li>
+        </ul>
+        <h3>Program</h3>
+        <textarea id="code1" class="code-area" spellcheck="false">from pyspark.sql import SparkSession
+# from group operation compute average each group
+from pyspark.sql.functions import avg
+
+spark = SparkSession.builder
+    .appName("Data frame example")
+    .getOrCreate()
+
+data = [
+    ("Aarav", "CS", 82),
+    ("Ananya", "IT", 90),
+    ("Kabir", "IT", 75),
+    ("Priya", "CS", 68),
+    ("Rohan", "IT", 85),
+    ("Diya", "CS", 94)
+]
+
+columns = ["name", "Department", "marks"]
+df = spark.createDataFrame(data, columns)
+df.show()
+spark.stop()</textarea>
+        <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+    </div>
+    <script>
+        function copyCode(id, button) {
+            const code = document.getElementById(id);
+            code.select();
+            code.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(code.value).then(() => {
+                button.innerText = "✅ Copied!";
+                setTimeout(() => button.innerText = "📋 Copy", 2000);
+            });
+        }
+    </script>
+</body>
+</html>

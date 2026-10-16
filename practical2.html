@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+        h2 { color: #333; }
+        textarea {
+            width: 100%;
+            height: 430px;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            white-space: pre;
+        }
+        .copy-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0 20px;
+        }
+        .copy-btn:hover { background: #0056b3; }
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .back-btn:hover { background: #0056b3; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Practical 2: Descriptive Statistics Using Scala Collection</h2>
+    <ul>
+        <li>Create a list of numbers.</li>
+        <li>Calculate mean, median, and mode using Scala collection.</li>
+        <li>Display results in formatted output.</li>
+    </ul>
+
+    <h3>Code:</h3>
+    <textarea id="code1" readonly>object Main {
+  def main(args: Array[String]): Unit = {
+    val numbers = List(10, 13, 15, 17, 19, 20, 21, 22)
+    val mean = numbers.sum.toDouble / numbers.length
+    val sorted = numbers.sorted
+    val n = sorted.length
+    val median =
+      if (n % 2 == 0)
+        (sorted(n / 2 - 1) + sorted(n / 2)) / 2.0
+      else
+        sorted(n / 2)
+
+    val mode = numbers
+      .groupBy(identity)
+      .map { (num, list) => (num, list.size) }
+      .maxBy(_._2)
+
+    println("=======")
+    println("Statistical Analysis")
+    println("Numbers: " + numbers.mkString(", "))
+    printf("Mean: %.2f\\n", mean)
+    printf("Median: %.2f\\n", median)
+    println("Mode: " + mode)
+    println("=======")
+  }
+}</textarea>
+    <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+
+    <p><em>Note: A few characters on the right edge of the handwritten code are unclear in the photo, so this is a best-effort transcription of the visible code.</em></p>
+    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+<script>
+function copyCode(id, button) {
+    const textarea = document.getElementById(id);
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(textarea.value).then(() => {
+        button.innerText = "✅ Copied!";
+        setTimeout(() => button.innerText = "📋 Copy", 2000);
+    });
+}
+</script>
+</body>
+</html>

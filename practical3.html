@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover { background: #0056b3; }
+        textarea {
+            width: 100%;
+            min-height: 430px;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            padding: 12px;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .copy-btn {
+            margin: 8px 0 20px;
+            padding: 9px 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <h2>Practical 3: Random Dataset and Variability Measures</h2>
+        <ul>
+            <li>Generate a random dataset of 10 numbers.</li>
+            <li>Calculate variance and standard deviation.</li>
+            <li>Interpret the result.</li>
+        </ul>
+        <h3>Code:</h3>
+        <textarea id="code1" readonly>import scala.util.Random
+import scala.math._
+
+object Main {
+    def main(args: Array[String]): Unit = {
+        val data = List.fill(10)(Random.nextInt(100))
+        val mean = data.sum.toDouble / data.length
+        val variance = data.map(x => pow(x - mean, 2)).sum / data.length
+        val stdDeviation = sqrt(variance)
+
+        println(" ")
+        println("Statistical Analysis")
+        println("Dataset: " + data.mkString(", "))
+        printf("Mean: %.2f\n", mean)
+        printf("Variance: %.2f\n", variance)
+        printf("Standard Deviation: %.2f\n", stdDeviation)
+
+        println("\nInterpretation:")
+        if (stdDeviation < 15) {
+            println("The data")
+        }
+    }
+}</textarea>
+        <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+        <p><em>Note: The final interpretation line is cut off in the photo, so only the visible text “The data” is included.</em></p>
+    </div>
+    <script>
+        function copyCode(id, button) {
+            const textarea = document.getElementById(id);
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                button.innerText = "✅ Copied!";
+                setTimeout(() => button.innerText = "📋 Copy", 2000);
+            });
+        }
+    </script>
+</body>
+</html>
