@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Practical Page</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 40px; }
+.container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); width: 700px; max-width: calc(100% - 50px); margin: 0 auto 25px; }
+h1, h2 { color: #222; }
+textarea { width: 100%; min-height: 240px; box-sizing: border-box; padding: 12px; font-family: Consolas, monospace; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; resize: vertical; white-space: pre; }
+.copy-btn, .back-btn { background: #1677ff; color: white; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; }
+.copy-btn:hover, .back-btn:hover { background: #075ac5; }
+@media(max-width:600px) { body { margin: 12px; } .container { width: auto; max-width: none; padding: 16px; } }
+</style>
+</head><body><div class="container"><h1>Practical No. 4</h1><h2>Queue Using Linked List &amp; Applications</h2></div>
+<div class="container">
+<h2>a) Implement Queue Using Linked List</h2>
+
+<textarea id="code1" readonly># Queue using Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enqueue(self, data):
+        new_node = Node(data)
+
+        if self.rear is None:
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+
+        print(data, "inserted")
+
+    def dequeue(self):
+        if self.front is None:
+            print("Queue Underflow")
+        else:
+            print(self.front.data, "deleted")
+            self.front = self.front.next
+
+            if self.front is None:
+                self.rear = None
+
+    def display(self):
+        if self.front is None:
+            print("Queue is Empty")
+        else:
+            temp = self.front
+            print("Queue Elements:")
+            while temp:
+                print(temp.data)
+                temp = temp.next
+
+# Main Program
+q = Queue()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.display()
+q.dequeue()
+q.display()</textarea>
+<button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+</div>
+<div class="container"><h2>Output</h2><p>Source output: 10, 20, 30 inserted; queue displays 10, 20, 30; 10 deleted; queue then displays 20, 30.</p></div>
+<div class="container">
+<h2>b) Implement Priority Queue</h2>
+
+<textarea id="code2" readonly># Priority Queue
+
+queue = []
+
+def insert(data, priority):
+    queue.append((priority, data))
+    queue.sort()
+
+def delete():
+    if len(queue) == 0:
+        print("Priority Queue is Empty")
+    else:
+        item = queue.pop(0)
+        print("Deleted:", item)
+
+def display():
+    print("Priority Queue:")
+    for item in queue:
+        print(item)
+
+# Main Program
+insert("A", 2)
+insert("B", 1)
+insert("C", 3)
+display()
+delete()
+display()</textarea>
+<button class="copy-btn" onclick="copyCode('code2', this)">📋 Copy</button>
+</div>
+<div class="container"><h2>Output</h2><p>Source output: Priority Queue: (1, 'B'), (2, 'A'), (3, 'C'); Deleted: (1, 'B'); remaining (2, 'A'), (3, 'C').</p></div>
+<div class="container">
+<h2>c) Simulate CPU Scheduling (Basic FIFO Concept)</h2>
+
+<textarea id="code3" readonly># CPU Scheduling using FIFO
+
+queue = []
+
+queue.append("P1")
+queue.append("P2")
+queue.append("P3")
+queue.append("P4")
+
+print("CPU Execution Order:")
+
+while len(queue) > 0:
+    process = queue.pop(0)
+    print(process, "Executed")</textarea>
+<button class="copy-btn" onclick="copyCode('code3', this)">📋 Copy</button>
+</div>
+<div class="container"><h2>Output</h2><p>Source output: CPU Execution Order: P1 Executed, P2 Executed, P3 Executed, P4 Executed.</p></div>
+<div class="container">
+<h2>d) Compare Simple Queue and Circular Queue</h2>
+
+<textarea id="code4" readonly>SIZE = 5
+
+# ---------- Simple Queue ----------
+simple = []
+
+print("Simple Queue")
+
+# Enqueue
+simple.append(10)
+simple.append(20)
+simple.append(30)
+simple.append(40)
+simple.append(50)
+
+print("Queue:", simple)
+
+# Dequeue two elements
+simple.pop(0)
+simple.pop(0)
+
+print("After deleting two elements:", simple)
+
+print("Rear has reached the end.")
+print("In a Simple Queue, the empty spaces at the front cannot be reused.")
+print()
+
+# ---------- Circular Queue ----------
+
+print("Circular Queue")
+
+queue = [None] * SIZE
+front = 0
+rear = 4
+
+queue[0] = 10
+queue[1] = 20
+queue[2] = 30
+queue[3] = 40
+queue[4] = 50
+
+print("Queue:", queue)
+
+# Delete two elements
+front = (front + 1) % SIZE
+front = (front + 1) % SIZE
+
+# Insert new elements in freed positions
+rear = (rear + 1) % SIZE
+queue[rear] = 60
+
+rear = (rear + 1) % SIZE
+queue[rear] = 70
+
+print("Queue after reuse:", queue)</textarea>
+<button class="copy-btn" onclick="copyCode('code4', this)">📋 Copy</button>
+</div>
+<div class="container"><h2>Output</h2><p>Source output: Simple Queue [10, 20, 30, 40, 50]; after deleting two elements [30, 40, 50]. Circular Queue after reuse: [60, 70, 30, 40, 50].</p></div><div class="container">
+<script>
+function copyCode(id, button) {
+  navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+    button.textContent = "✅ Copied!";
+    setTimeout(() => { button.textContent = "📋 Copy"; }, 2000);
+  });
+}
+</script>
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div></body></html>

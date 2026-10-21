@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Practical Page</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 40px; }
+.container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); width: 700px; max-width: calc(100% - 50px); margin: 0 auto 25px; }
+h1, h2 { color: #222; }
+textarea { width: 100%; min-height: 240px; box-sizing: border-box; padding: 12px; font-family: Consolas, monospace; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; resize: vertical; white-space: pre; }
+.copy-btn, .back-btn { background: #1677ff; color: white; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; }
+.copy-btn:hover, .back-btn:hover { background: #075ac5; }
+p { line-height: 1.5; }
+@media(max-width:600px) { body { margin: 12px; } .container { width: auto; max-width: none; padding: 16px; } }
+</style>
+</head><body><div class="container"><h1>Practical No. 6</h1><h2>Binary Search Tree (BST): To implement Binary Search Tree operations</h2></div><div class="container"><h2>a) Insert Nodes into BST</h2><textarea id="code1" readonly># Insert Nodes into BST
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data &lt; root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=&quot; &quot;)
+        inorder(root.right)
+
+# Main Program
+root = None
+
+root = insert(root, 50)
+root = insert(root, 30)
+root = insert(root, 70)
+root = insert(root, 20)
+root = insert(root, 40)
+root = insert(root, 60)
+root = insert(root, 80)
+
+print(&quot;BST Elements:&quot;)
+inorder(root)</textarea><button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button></div><div class="container"><h2>Output</h2><p>Output: BST Elements: 20 30 40 50 60 70 80</p></div><div class="container"><h2>b) Search Element in BST</h2><textarea id="code2" readonly># Search Element in BST
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data &lt; root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+def search(root, key):
+    if root is None:
+        return False
+
+    if root.data == key:
+        return True
+
+    elif key &lt; root.data:
+        return search(root.left, key)
+    else:
+        return search(root.right, key)
+
+# Main Program
+root = None
+
+for i in [50,30,70,20,40,60,80]:
+    root = insert(root, i)
+
+key = int(input(&quot;Enter element to search: &quot;))
+
+if search(root, key):
+    print(&quot;Element Found&quot;)
+else:
+    print(&quot;Element Not Found&quot;)</textarea><button class="copy-btn" onclick="copyCode('code2', this)">📋 Copy</button></div><div class="container"><h2>Output</h2><p>Source output examples: searching 50 prints Element Found; searching 120 prints Element Not Found.</p></div><div class="container"><h2>c) Delete a Node from BST</h2><textarea id="code3" readonly># Delete Node from BST
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data &lt; root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+def minValue(root):
+    while root.left:
+        root = root.left
+    return root
+
+def delete(root, key):
+    if root is None:
+        return root
+
+    if key &lt; root.data:
+        root.left = delete(root.left, key)
+    elif key &gt; root.data:
+        root.right = delete(root.right, key)
+    else:
+        if root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+
+        temp = minValue(root.right)
+        root.data = temp.data
+        root.right = delete(root.right, temp.data)
+
+    return root
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=&quot; &quot;)
+        inorder(root.right)
+
+# Main Program
+root = None
+
+for i in [50,30,70,20,40,60,80]:
+    root = insert(root, i)
+
+print(&quot;Before Deletion:&quot;)
+inorder(root)
+
+root = delete(root, 30)
+
+print(&quot;\nAfter Deleting 30:&quot;)
+inorder(root)</textarea><button class="copy-btn" onclick="copyCode('code3', this)">📋 Copy</button></div><div class="container"><h2>Output</h2><p>Source output: Before deletion: 20 30 40 50 60 70 80; after deleting 30: 20 40 50 60 70 80.</p></div><div class="container"><h2>d) Find Height and Count Total Nodes</h2><textarea id="code4" readonly># Height and Total Nodes in BST
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data &lt; root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+def height(root):
+    if root is None:
+        return 0
+
+    left = height(root.left)
+    right = height(root.right)
+
+    return max(left, right) + 1
+
+def countNodes(root):
+    if root is None:
+        return 0
+
+    return 1 + countNodes(root.left) + countNodes(root.right)
+
+# Main Program
+root = None
+
+for i in [50,30,70,20,40,60,80]:
+    root = insert(root, i)
+
+print(&quot;Height of BST:&quot;, height(root))
+print(&quot;Total Nodes:&quot;, countNodes(root))</textarea><button class="copy-btn" onclick="copyCode('code4', this)">📋 Copy</button></div><div class="container"><h2>Output</h2><p>Output shown in source: Height of BST: 3; Total Nodes: 7</p></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div>
+<script>
+function copyCode(id, button) {
+  navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+    button.textContent = "✅ Copied!";
+    setTimeout(() => { button.textContent = "📋 Copy"; }, 2000);
+  });
+}
+</script>
+</body></html>

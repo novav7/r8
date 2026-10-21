@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical Page</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:700px;max-width:calc(100% - 50px);margin:auto auto 25px}
+h1,h2{color:#222}
+textarea{width:100%;min-height:280px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Practical No. 1</h1>
+<h2>Implement Stack with Push and Pop Operations</h2>
+<p>Stack implementation using a list, including push, pop, and displaying the remaining stack.</p>
+<h3>Program 1: Stack Implementation Using List</h3>
+<textarea id="code1" readonly># Stack Implementation using List
+
+# Create an empty stack
+stack = []
+
+# Push function
+def push():
+    item = input("Enter element to push: ")
+    stack.append(item)
+    print(item, "pushed into stack")
+
+# Pop function
+def pop():
+    if len(stack) == 0:
+        print("Stack is Empty (underflow)")
+    else:
+        item = stack.pop()
+        print(item, "popped from stack")
+
+# Push elements
+push()
+push()
+push()
+
+# Pop elements
+pop()
+
+# Display remaining stack
+print("Current stack:", stack)</textarea>
+<button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+</div>
+<div class="container">
+<h2>Program 2: Implement Peek and Display Functions</h2>
+<textarea id="code2" readonly># Stack using Arrays (List)
+stack = []
+
+# Add some elements into the stack
+stack.append(10)
+stack.append(20)
+stack.append(30)
+stack.append(40)
+
+# Peek function
+def peek():
+    if len(stack) == 0:
+        print("Stack is empty")
+    else:
+        print("Top element is:", stack[-1])
+
+def display():
+    if len(stack) == 0:
+        print("Stack is empty")
+    else:
+        print("Stack elements are:")
+        for i in range(len(stack) - 1, -1, -1):
+            print(stack[i])
+
+peek()
+display()</textarea>
+<button class="copy-btn" onclick="copyCode('code2', this)">📋 Copy</button>
+</div>
+<div class="container">
+<h2>Program 3: Check Overflow and Underflow Conditions</h2>
+<textarea id="code3" readonly>max = 3
+stack = []
+
+def push(item):
+    if len(stack) == max:
+        print("Stack overflow!")
+    else:
+        stack.append(item)
+        print(item, "inserted into stack.")
+
+def pop():
+    if len(stack) == 0:
+        print("Stack underflow!")
+    else:
+        item = stack.pop()
+        print(item, "removed from stack.")
+
+push(10)
+push(20)
+push(30)
+push(40)
+
+pop()
+pop()
+pop()
+pop()</textarea>
+<button class="copy-btn" onclick="copyCode('code3', this)">📋 Copy</button>
+</div>
+<div class="container">
+<h2>Program 4: Demonstrate Stack Using a Menu-Driven Program</h2>
+<textarea id="code4" readonly>stack = []
+
+while True:
+    print("--- Stack Menu ---")
+    print("1. Push")
+    print("2. Pop")
+    print("3. Peek")
+    print("4. Display")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        item = input("Enter element: ")
+        stack.append(item)
+        print(item, "pushed into stack")
+
+    elif choice == 2:
+        if len(stack) == 0:
+            print("Stack is empty.")
+        else:
+            print(stack.pop(), "popped from stack.")
+
+    elif choice == 3:
+        if len(stack) == 0:
+            print("Stack is empty.")
+        else:
+            print("Top element is:", stack[-1])
+
+    elif choice == 4:
+        if len(stack) == 0:
+            print("Stack is empty.")
+        else:
+            print("Stack elements:")
+            for i in range(len(stack) - 1, -1, -1):
+                print(stack[i])
+
+    elif choice == 5:
+        print("Program ended")
+        break
+
+    else:
+        print("Invalid choice!")</textarea>
+<button class="copy-btn" onclick="copyCode('code4', this)">📋 Copy</button>
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+<script>
+function copyCode(id, button){
+    const code=document.getElementById(id).value;
+    navigator.clipboard.writeText(code).then(()=>{
+        button.textContent="✅ Copied!";
+        setTimeout(()=>{button.textContent="📋 Copy"},2000);
+    });
+}
+</script>
+</body>
+</html>

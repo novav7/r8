@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Practical Page</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 40px; }
+.container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); width: 700px; max-width: calc(100% - 50px); margin: 0 auto 25px; }
+h1, h2 { color: #222; }
+textarea { width: 100%; min-height: 240px; box-sizing: border-box; padding: 12px; font-family: Consolas, monospace; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; resize: vertical; white-space: pre; }
+.copy-btn, .back-btn { background: #1677ff; color: white; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; }
+.copy-btn:hover, .back-btn:hover { background: #075ac5; }
+p { line-height: 1.5; }
+@media(max-width:600px) { body { margin: 12px; } .container { width: auto; max-width: none; padding: 16px; } }
+</style>
+</head><body><div class="container"><h1>Practical No. 8</h1><h2>Git Basics for Data Structure Projects: To use Git for version control in DS programs</h2></div><div class="container"><h2>a) Initialize Repository Using git init</h2><textarea id="code1" readonly>Create a Project Folder
+
+Step-1:
+Create a folder on your Desktop.
+Example:
+DS_Project
+
+Inside the folder, create a simple Python program.
+Example:
+stack.py
+
+Step 2: Open the Folder in VS Code
+1. Open VS Code.
+2. Click File → Open Folder.
+3. Select DS_Project.
+
+Step 3: Open the Terminal
+Click Terminal
+
+Step-1:
+git init
+
+Press Enter.</textarea><button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button></div><div class="container"><h2>b) Add and Commit DS Programs (git add, git commit)</h2><textarea id="code2" readonly>Step-1:
+Add the file
+
+git add stack.py
+
+Step-2:
+git commit -m &quot;Added Stack Program&quot;</textarea><button class="copy-btn" onclick="copyCode('code2', this)">📋 Copy</button></div><div class="container"><h2>c) Create and Switch Branches (git branch, git checkout)</h2><textarea id="code3" readonly>Step 1:
+Create a new branch:
+
+git branch tree
+
+Step 2:
+git checkout tree</textarea><button class="copy-btn" onclick="copyCode('code3', this)">📋 Copy</button></div><div class="container"><h2>d) Merge Branches and Resolve Conflicts</h2><textarea id="code4" readonly>Step 1:
+Return to the main branch:
+
+git checkout main
+
+Step 2:
+Merge the tree branch:
+
+git merge tree</textarea><button class="copy-btn" onclick="copyCode('code4', this)">📋 Copy</button></div><div class="container"><h2>e) Push Project to Remote Repository (git push)</h2><textarea id="code5" readonly>Step 1:
+First create a repository on GitHub.
+Example:
+DS_Project
+
+Commands shown in the source terminal:
+git branch
+git branch -M main
+git push -u origin main
+git status
+git remote add origin https://github.com/ashunarayanank78-pixel/DS_Proj.git
+git branch
+git branch -M main
+git push -u origin main</textarea><button class="copy-btn" onclick="copyCode('code5', this)">📋 Copy</button></div><div class="container"><h2>Output</h2><p>The source includes screenshots showing Git initialization, commit, branch creation/switching, merge, and pushing the project to GitHub.</p></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div>
+<script>
+function copyCode(id, button) {
+  navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+    button.textContent = "✅ Copied!";
+    setTimeout(() => { button.textContent = "📋 Copy"; }, 2000);
+  });
+}
+</script>
+</body></html>

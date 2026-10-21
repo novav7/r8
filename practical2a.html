@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical Page</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:700px;max-width:calc(100% - 50px);margin:0 auto 25px}
+h1,h2{color:#222}
+textarea{width:100%;min-height:300px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Practical No. 2</h1>
+<h2>Stack Implementation Using Singly Linked List</h2>
+<textarea id="code1" readonly># Stack implementation using singly linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
+        print(data, "pushed into stack.")
+
+    def pop(self):
+        if self.top is None:
+            print("Stack underflow!")
+        else:
+            temp = self.top
+            self.top = self.top.next
+            print(temp.data, "popped from stack.")
+
+    def display(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            temp = self.top
+            print("Stack Elements:")
+            while temp:
+                print(temp.data)
+                temp = temp.next
+
+s = Stack()
+s.push(10)
+s.push(20)
+s.push(30)
+s.display()
+s.pop()
+s.display()</textarea>
+<button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+</div>
+
+<div class="container">
+<h2>Infix Expression to Postfix</h2>
+<textarea id="code2" readonly>def precedence(op):
+    if op == '+' or op == '-':
+        return 2
+    elif op == '*' or op == '/':
+        return 2
+    elif op == '^':
+        return 3
+    return 0
+
+def infix_to_postfix(expression):
+    stack = []
+    postfix = ""
+    for ch in expression:
+        if ch.isalnum():
+            postfix += ch
+        elif ch == '(':
+            stack.append(ch)
+        elif ch == ')':
+            while stack and stack[-1] != '(':
+                postfix += stack.pop()
+            stack.pop()
+        else:
+            while stack and precedence(ch) <= precedence(stack[-1]):
+                postfix += stack.pop()
+            stack.append(ch)
+    while stack:
+        postfix += stack.pop()
+    return postfix
+
+expr = input("Enter Infix Expression: ")
+print("Postfix Expression:", infix_to_postfix(expr))</textarea>
+<button class="copy-btn" onclick="copyCode('code2', this)">📋 Copy</button>
+</div>
+
+<div class="container">
+<h2>Evaluate Postfix Expression</h2>
+<textarea id="code3" readonly>stack = []
+postfix = input("Enter Postfix Expression (e.g. 23+5*): ")
+
+for ch in postfix:
+    if ch.isdigit():
+        stack.append(int(ch))
+    else:
+        b = stack.pop()
+        a = stack.pop()
+        if ch == '+':
+            stack.append(a + b)
+        elif ch == '-':
+            stack.append(a - b)
+        elif ch == '*':
+            stack.append(a * b)
+        elif ch == '/':
+            stack.append(a / b)
+
+print("Result =", stack.pop())</textarea>
+<button class="copy-btn" onclick="copyCode('code3', this)">📋 Copy</button>
+</div>
+
+<div class="container">
+<h2>Check Balanced Parentheses Using Stack</h2>
+<textarea id="code4" readonly>def check_balance(expression):
+    stack = []
+    for ch in expression:
+        if ch == '(':
+            stack.append(ch)
+        elif ch == ')':
+            if len(stack) == 0:
+                return "Not Balanced"
+            stack.pop()
+    if len(stack) == 0:
+        return "Balanced"
+    return "Not Balanced"
+
+expr = input("Enter Expression: ")
+print(check_balance(expr))</textarea>
+<button class="copy-btn" onclick="copyCode('code4', this)">📋 Copy</button>
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+<script>
+function copyCode(id, button){
+    navigator.clipboard.writeText(document.getElementById(id).value).then(()=>{
+        button.textContent="✅ Copied!";
+        setTimeout(()=>{button.textContent="📋 Copy"},2000);
+    });
+}
+</script>
+</body>
+</html>
